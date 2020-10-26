@@ -1,0 +1,26 @@
+title: Possible Kerberoasting Attack
+id: 4803ab72-0b76-4cf1-932f-699bee30f048
+description: Detects Suspicious Kerberos service ticket request
+status: experimental
+references:
+    - https://www.trustedsec.com/blog/art_of_kerberoast/
+    - https://github.com/Neo23x0/sigma/blob/master/rules/windows/builtin/win_susp_rc4_kerberos.yml
+author: Julio Ureña
+date: 2020/10/26
+tags:
+    - attack.credential_access
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4769
+        TicketOptions: '0x40810010'
+        TicketEncryptionType: '0x17'
+    reduction:
+        - ServiceName: '*$*'
+        - AccountName: '*$*'
+    condition: selection and not reduction
+falsepositives:
+    - Unknown
+level: medium
