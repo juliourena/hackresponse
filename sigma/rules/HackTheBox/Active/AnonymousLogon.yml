@@ -1,0 +1,20 @@
+title: Anonymous Logon
+id: d08b5f3f-1805-47ed-a9b9-61701575e691
+description: Detects Anonymous Logon
+status: experimental
+references:
+    - Googling
+author: Julio Ureña
+date: 2020/10/31
+tags:
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4624
+        SecurityID: 'S-1-5-7'
+    condition: selection
+falsepositives:
+    - Unknown
+level: low
