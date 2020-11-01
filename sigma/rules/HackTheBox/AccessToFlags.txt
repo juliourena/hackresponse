@@ -1,0 +1,17 @@
+title: Access to Flag Detected over SMB
+id: 3b018cda-42ed-4599-afe9-126b6bfcde8c
+description: Detects access to flags via a network share
+author: Julio Ureña
+date: 2020/10/31
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID:
+            - 5145
+        RelativeTargetName:
+            - '*\user.txt'
+            - '*\root.txt'
+    condition: selection
+level: high
