@@ -1,0 +1,16 @@
+title: PsExec Detection from Impacket tools (remcomsvc)
+id: 8ec17bbd-21d3-40a3-ba8b-3eeb2a5621dd
+description: Detects psexec.py usage from impacket tools (remcomsvc) monitor for named pipe communication with default remcom pipe.
+author: Julio Ureña
+date: 2020/10/31
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID:
+            - 5145
+        RelativeTargetName:
+            - '*\remcom_communicaton'
+    condition: selection
+level: high
